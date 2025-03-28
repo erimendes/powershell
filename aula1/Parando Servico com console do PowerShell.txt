@@ -20,3 +20,6 @@ PS C:\Users\s1246682> if ($service.Status -eq "Running") {
 >> }
 
 PS C:\Users\s1246682> Get-Disk -Number 0 | Get-Member
+
+# Para pegar todos os ALIAS
+Get-Alias
