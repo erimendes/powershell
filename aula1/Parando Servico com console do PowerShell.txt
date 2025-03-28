@@ -23,3 +23,6 @@ PS C:\Users\s1246682> Get-Disk -Number 0 | Get-Member
 
 # Para pegar todos os ALIAS
 Get-Alias
+
+# Comando para obter ajuda:
+Get-Help -Name Rename-Item
