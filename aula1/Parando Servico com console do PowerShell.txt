@@ -26,3 +26,6 @@ Get-Alias
 
 # Comando para obter ajuda:
 Get-Help -Name Rename-Item
+
+# Comando para renomear arquivos no PowerShel:
+Rename-Item nome novoNome -WhatIf
