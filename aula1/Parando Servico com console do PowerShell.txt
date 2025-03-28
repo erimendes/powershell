@@ -1,10 +1,20 @@
-# Comando para obtermos o serviço no computador da rede chamado SRV01
-# DICA: Para obtermos um serviço em nossa máquina local, podemos omitir o argumento -ComputerName
+# Comando para obtermos o serviÃ§o no computador da rede chamado SRV01
+# DICA: Para obtermos um serviÃ§o em nossa mÃ¡quina local, podemos omitir o argumento -ComputerName
 Get-Service -Name "ByteBank Interface Service" -ComputerName "SRV01"
 
-# Armazenando o resultado do comando em uma variável
+# Armazenando o resultado do comando em uma variÃ¡vel
 $servico = Get-Service -Name "ByteBank Interface Service" -ComputerName "SRV01"
 
-# Invocando métodos deste objeto
+# Invocando mÃ©todos deste objeto
 $servico.Stop()
 $servico.Start()
+
+PS C:\Users\s1246682> $service = Get-Service -Name "VBoxSDS" -ComputerName "BV2151513"
+PS C:\Users\s1246682> $service.Status
+Running
+PS C:\Users\s1246682> if ($service.Status -eq "Running") {
+>> $service.Stop()
+>> $service.Start()
+>> } else {
+>> echo "Service nÃ£o estava executando!"
+>> }
