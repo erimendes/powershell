@@ -9,6 +9,8 @@ $todosOsArquivos = gci -Recurse -File
 $todosOsArquivos.Length
 
 # Filtro de arquivos parecidos com "*_migrando_*" FILTER LEFT, FORMAT RIGHT
+gci -Recurse -File | Where-Object Name -like "*_migrando_*" | Select-Object Name, Length
+ou
 gci -recurse -file | ? Name -like "*_migrando_*" | select Name, Length
 
 
