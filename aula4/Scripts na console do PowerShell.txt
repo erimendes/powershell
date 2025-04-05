@@ -26,6 +26,13 @@ gci -recurse -file | ? Name -like "*_migrando_*" | select Name, Length
 # Usando o format operator -f
  "{0:N2}MB = {1:N2}KB" -f (1gb / 1mb), (1gb / 1kb)
 
+# Backticks para comandos com várias linhas!
+gci -recurse -file |
+	? Name -like "*_migrando_*" |
+	select `
+		Name, `
+		{ "{0:N2}KB" -f ($_.Length / 1KB) }
+
 
 $nameExpr = "Name"
 $lengthExp = { "{0:N2}KB" -f ($_.Length / 1KB) }
@@ -35,11 +42,12 @@ gci -recurse -file |
 	select `
 		$nameExpr, $lengthExp
 
-# Backticks para comandos com várias linhas!
-gci -recurse -file |
-	? Name -like "*_migrando_*" |
-	select `
-		Name, `
-		{ "{0:N2}KB" -f ($_.Length / 1KB) }
 
- 
+$nameExpr = "Nome", { $_.Name }
+$lengthExpr = "Tamanho", { "{0:N2}KB" -f ($_.Length / 1KB) }
+
+$params = $nameExpr, $lengthExpr
+gci -recurse -file |
+	? Name -like "*Certificado*" |
+	select $params
+
