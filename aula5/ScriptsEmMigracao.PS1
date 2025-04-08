@@ -1,5 +1,7 @@
 param($tipoDeExportacao)
 
+# $tipoDeExportacao = "HTML"
+
 $ErrorActionPreference = "Stop"
 
 <#
@@ -21,27 +23,27 @@ $params = $nameExpr, $lengthExpr
 
 $resultado =
 	gci -Recurse -File |
-		? Name -like "*_migrando_*" |
+		? Name -like "*inventario*" |
 		select $params
 
 		
 if ($tipoDeExportacao -eq "HTML") {
-	$estilos = Get-Content c:\scripts\styles.css
+	$estilos = Get-Content c:\dev\styles.css
 	$styleTag = "<style> $estilos </style>"
 	$tituloPagina = "Relatorio de Scripts em Migracao"
 	$tituloBody = "<h1> $tituloPagina </h1>"
 
 	$resultado |
 		ConvertTo-Html -Head $styleTag -Title $tituloPagina -Body $tituloBody  |
-		Out-File c:\tempGui\relatorio.html	
+		Out-File c:\dev\relatorio.html	
 } elseif ($tipoDeExportacao -eq "JSON") {
 	$resultado |
 		ConvertTo-JSON |
-		Out-File c:\tempGui\relatorio.json
+		Out-File c:\dev\relatorio.json
 } elseif ($tipoDeExportacao -eq "CSV") {
 	$resultado |
 		ConvertTo-CSV -NoTypeInformation |
-		Out-File c:\tempGui\relatorio.csv
+		Out-File c:\dev\relatorio.csv
 }
 		
 		
