@@ -44,6 +44,9 @@ if ($tipoDeExportacao -eq "HTML") {
 	$resultado |
 		ConvertTo-CSV -NoTypeInformation |
 		Out-File c:\dev\relatorio.csv
+} else {
+    Write-Warning "Tipo de exportação '$tipoDeExportacao' não suportado. As opções são: HTML, JSON, CSV."
+    Write-Host "Nenhum arquivo foi gerado."
 }
 		
 		
