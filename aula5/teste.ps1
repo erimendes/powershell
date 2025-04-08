@@ -4,6 +4,11 @@ param(
     [string]$tipoDeExportacao
 )
 
+param(
+    [Parameter(Mandatory = $true)]
+    [string]$tipoDeExportacao
+)
+
 $ErrorActionPreference = "Stop"
 
 <#
